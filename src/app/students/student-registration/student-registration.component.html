@@ -1,0 +1,113 @@
+<h4 matDialogTitle>{{data[0]}} Student</h4>
+<mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
+    <div class="row">
+      <div class="col-12">
+        <mat-form-field>
+          <input type="text" matInput formControlName="FirstName" placeholder="FirstName" required>
+          <mat-error
+            *ngIf="form.controls['FirstName'].hasError('required') && form.controls['FirstName'].touched || form.controls['FirstName'].untouched">
+            <strong>This field is required.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field>
+          <input type="text" matInput formControlName="LastName" placeholder="LastName" required>
+          <mat-error
+            *ngIf="form.controls['LastName'].hasError('required') && form.controls['LastName'].touched || form.controls['LastName'].untouched">
+            <strong>This field is required.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field>
+          <input type="text" matInput formControlName="FatherName" placeholder="FatherName" required>
+          <mat-error
+            *ngIf="form.controls['FatherName'].hasError('required') && form.controls['FatherName'].touched || form.controls['FatherName'].untouched">
+            <strong>This field is required.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field>
+          <input type="text" matInput formControlName="Email" placeholder="Email" required>
+          <mat-error
+            *ngIf="form.controls['Email'].hasError('required') && form.controls['Email'].touched || form.controls['Email'].untouched">
+            <strong>This field is required.</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls['Email'].invalid &&
+              form.controls['Email'].dirty">
+            <strong>Invalid Email.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field>
+          <textarea matInput placeholder="Address" formControlName="Address" required></textarea>
+          <mat-error
+            *ngIf="form.controls['Address'].hasError('required') && form.controls['Address'].touched || form.controls['Address'].untouched">
+            <strong>This field is required.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field>
+          <input type="text" matInput formControlName="Mobile" placeholder="Mobile" required>
+          <mat-error
+            *ngIf="form.controls['Mobile'].hasError('required') && form.controls['Mobile'].touched || form.controls['Mobile'].untouched">
+            <strong>This field is required.</strong>
+          </mat-error>
+          <mat-error *ngIf="form.controls['Mobile'].hasError('pattern') && form.controls['Mobile'].dirty">
+            <strong>Allow only digits.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-label class="mat-label">Gender</mat-label>
+        <mat-radio-group formControlName="Gender">
+          <mat-radio-button value="Male">Male</mat-radio-button>
+          <mat-radio-button value="Female">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field>
+          <mat-label class="mat-label">Country</mat-label>
+          <mat-select formControlName="Country">
+            <mat-option *ngFor="let item of countryList" [value]="item.id">
+              {{ item.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="form.controls['Country'].hasError('required') && form.controls['Country'].touched || form.controls['Country'].untouched">
+            <strong>This field is required.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field>
+          <input matInput placeholder="DOB" [max]="maxDate" formControlName="DOB" [matDatepicker]="picker" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="form.controls['DOB'].hasError('required') && form.controls['DOB'].touched || form.controls['DOB'].untouched">
+            <strong>This field is required.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+    </div>
+    <div class="row action">
+      <button type="submit" mat-raised-button color="primary">Save</button>
+      <button mat-dialog-close mat-raised-button>CANCEL</button>
+    </div>
+  </form>
+</mat-dialog-content>
